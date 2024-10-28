@@ -226,67 +226,67 @@ animals=#
 8. Let's create tables according to the class hierarchy:
 
 ```Terminal
--- Создание таблицы для животных
+-- Create a table for animals
 CREATE TABLE animals (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    age INT NOT NULL,
-    birth_date DATE NOT NULL,
-    type VARCHAR(50) NOT NULL
+id SERIAL PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+age INT NOT NULL,
+birth_date DATE NOT NULL,
+type VARCHAR(50) NOT NULL
 );
 
--- Создание таблицы для собак
+-- Create a table for dogs
 CREATE TABLE dogs (
-    id SERIAL PRIMARY KEY,
-    animal_id INT,
-    breed VARCHAR(100) NOT NULL,
-    commands TEXT,
-    FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
+id SERIAL PRIMARY KEY,
+animal_id INT,
+breed VARCHAR(100) NOT NULL,
+commands TEXT,
+FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
--- Создание таблицы для кошек
+-- Create a table for cats
 CREATE TABLE cats (
-    id SERIAL PRIMARY KEY,
-    animal_id INT,
-    breed VARCHAR(100) NOT NULL,
-    commands TEXT,
-    FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
+id SERIAL PRIMARY KEY,
+animal_id INT,
+breed VARCHAR(100) NOT NULL,
+commands TEXT,
+FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
--- Создание таблицы для хомяков
+-- Create a table for hamsters
 CREATE TABLE hamsters (
-    id SERIAL PRIMARY KEY,
-    animal_id INT,
-    breed VARCHAR(100) NOT NULL,
-    commands TEXT,
-    FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
+id SERIAL PRIMARY KEY,
+animal_id INT,
+breed VARCHAR(100) NOT NULL,
+commands TEXT,
+FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
--- Создание таблицы для ослов
+-- Create a table for donkeys
 CREATE TABLE donkeys (
-    id SERIAL PRIMARY KEY,
-    animal_id INT,
-    breed VARCHAR(100) NOT NULL,
-    commands TEXT,
-    FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
+id SERIAL PRIMARY KEY,
+animal_id INT,
+breed VARCHAR(100) NOT NULL,
+commands TEXT,
+FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
--- Создание таблицы для лошадей
+-- Create a table for horses
 CREATE TABLE horses (
-    id SERIAL PRIMARY KEY,
-    animal_id INT,
-    breed VARCHAR(100) NOT NULL,
-    commands TEXT,
-    FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
+id SERIAL PRIMARY KEY,
+animal_id INT,
+breed VARCHAR(100) NOT NULL,
+commands TEXT,
+FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 
--- Создание таблицы для верблюдов
+-- Create a table for camels
 CREATE TABLE camels (
-    id SERIAL PRIMARY KEY,
-    animal_id INT,
-    breed VARCHAR(100) NOT NULL,
-    commands TEXT,
-    FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
+id SERIAL PRIMARY KEY,
+animal_id INT,
+breed VARCHAR(100) NOT NULL,
+commands TEXT,
+FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE
 );
 ```
 
@@ -332,5 +332,48 @@ We then add specific information to the appropriate tables (e.g. breed for dogs 
 This avoids duplication of information. We can store general information in the animals table, and specific information (e.g. breed) in the dogs table.
 
 9. Fill low-level tables with names (of animals), commands they perform and dates of birth
+
+```Terminal
+-- Adding the age and commands column to the dogs table
+ALTER TABLE dogs ADD COLUMN age INT NOT NULL;
+ALTER TABLE dogs ADD COLUMN commands TEXT;
+
+-- Adding the age and commands column to the cats table
+ALTER TABLE cats ADD COLUMN age INT NOT NULL;
+ALTER TABLE cats ADD COLUMN commands TEXT;
+
+-- Adding the age and commands column to the hamsters table
+ALTER TABLE hamsters ADD COLUMN age INT NOT NULL;
+ALTER TABLE hamsters ADD COLUMN commands TEXT;
+
+-- Adding the age and commands column to the donkeys table
+ALTER TABLE donkeys ADD COLUMN age INT NOT NULL;
+ALTER TABLE donkeys ADD COLUMN commands TEXT;
+
+-- Adding the age and commands column to the horses table
+ALTER TABLE horses ADD COLUMN age INT NOT NULL;
+ALTER TABLE horses ADD COLUMN commands TEXT;
+
+-- Adding an age and commands column to the camels table ALTER TABLE camels ADD COLUMN age INT NOT NULL;
+ALTER TABLE camels ADD COLUMN commands TEXT;
+
+-- Filling the dogs table
+UPDATE dogs SET age = 3, commands = 'Sit, Lie down' WHERE animal_id = 1;
+
+-- Filling the cats table
+UPDATE cats SET age = 2, commands = 'Sit, Meow' WHERE animal_id = 2;
+
+-- Filling the hamsters table
+UPDATE hamsters SET age = 1, commands = 'Run in a wheel' WHERE animal_id = 3;
+
+-- Filling the horses table
+UPDATE horses SET age = 5, commands = 'Gallop, Stomp' WHERE animal_id = 4;
+
+-- Filling the camels table
+UPDATE camels SET age = 4, commands = 'Be patient, Walk' WHERE animal_id = 5;
+
+-- Filling the donkeys table
+UPDATE donkeys SET age = 6, commands = 'Pull, Carry' WHERE animal_id = 6;
+```
 
 10. Created an application that simulates a nursery [Src](./src/)
