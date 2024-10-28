@@ -316,6 +316,21 @@ INSERT INTO Camels (animal_id) VALUES (5);
 INSERT INTO Donkeys (animal_id) VALUES (6);
 ```
 
+The animals table is the main table that contains general information about all animals. Each animal has a unique id, name, age, birth_date, and type.
+
+The id field is the primary key, meaning that it uniquely identifies each record in the table.
+
+A separate table is created for each type of animal (dogs, cats, hamsters, donkeys, horses, camels).
+
+The animal_id field in each of the tables for specific animal types is a foreign key that references the id in the animals table. This means that each record in the table for a specific animal type is related to a record in the animals table.
+
+This helps maintain data integrity. For example, if we delete a record from the animals table, all related records in the dogs, cats, etc. tables will also be deleted thanks to the ON DELETE CASCADE option.
+
+The data is inserted first into the animals table, where we add general information about animals.
+We then add specific information to the appropriate tables (e.g. breed for dogs and cats) using animal_id, which references the id in the animals table.
+
+This avoids duplication of information. We can store general information in the animals table, and specific information (e.g. breed) in the dogs table.
+
 9. Fill low-level tables with names (of animals), commands they perform and dates of birth
 
 10. Created an application that simulates a nursery [Src](./src/)
